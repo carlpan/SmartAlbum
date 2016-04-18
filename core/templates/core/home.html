@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+<!-- place for block title and head if any -->
+{% block head %}
+    <link href="{% static 'css/home.css' %}" rel="stylesheet">
+{% endblock head %}
+
+
+{% block main %}
+
+    <div class="starter-template">
+        <h1>Smart Album</h1>
+        <p class="lead">Login to see a list of photos under #Carnival hashtag from Twitter.</p>
+    </div>
+
+{% endblock %}

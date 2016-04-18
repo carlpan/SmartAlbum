@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+<!-- place for block title and head if any -->
+{% block head %}
+    <link href="{% static 'css/home.css' %}" rel="stylesheet">
+{% endblock head %}
+
+
+{% block main %}
+    <section class="jumbotron text-xs-center">
+        <div class="container">
+            <h1 class="jumbotron-heading">Welcome to smart album, {{ request.user.first_name }}</h1>
+            <p class="lead text-muted">Photos from twitter with hashtags you want will be store here automatically for you.
+                You can also post the seven most popular photos to your Facebook account.</p>
+            <p>
+                <a href="{% url 'album:popular' %}" class="btn btn-primary">Show popular photos</a>
+            </p>
+        </div>
+    </section>
+
+    <div class="row">
+        {% if images %}
+            {% for image in images %}
+                <div class="col-xs-6 col-sm-4">
+                    <div class="thumbnail">
+                        <img src="{{ image.image_url_name }}">
+                        <div class="caption">
+                            <h3>{{ image.owner }}</h3>
+                            <p>Photo stored on {{ image.store_date }}</p>
+                            <p>Photo has {{ image.total_likes }} retweet count</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+{% endblock %}
